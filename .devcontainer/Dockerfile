@@ -88,5 +88,6 @@ RUN mkdir -p ~/.ssh &&                                                          
     sed -i "s|^pidfile .*|pidfile /run/redis/redis-server.pid|" /etc/redis/redis.conf &&                \
                                                                                                         \
     systemctl enable coder-agent.service &&                                                             \
+    touch /etc/coder/coder-agent.conf &&                                                                \
                                                                                                         \
     sed -i "s|/workspaces|${WORKSPACE_DIR}|g" /etc/systemd/system/redis-server.service.d/override.conf

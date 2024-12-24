@@ -57,36 +57,36 @@ RUN ln -fs /usr/share/zoneinfo/Pacific/Auckland /etc/localtime &&               
                                                                                                                   \
     curl -OL https://github.com/protocolbuffers/protobuf/releases/download/v28.0/protoc-28.0-linux-x86_64.zip &&  \
     unzip -o protoc-28.0-linux-x86_64.zip -d /usr &&                                                              \
-    rm protoc-28.0-linux-x86_64.zip &&                                                                            \
-                                                                                                                  \
-    curl -LO https://golang.org/dl/go$GO_VERSION.linux-amd64.tar.gz &&                                            \
-    tar -C /usr/local -xzf go$GO_VERSION.linux-amd64.tar.gz &&                                                    \
-    rm go$GO_VERSION.linux-amd64.tar.gz &&                                                                        \
-    mkdir -p $GOPATH/src $GOPATH/bin &&                                                                           \
-    go install google.golang.org/protobuf/cmd/protoc-gen-go@v1.36.0 &&                                            \
-    go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@v1.5.1 &&                                            \
-                                                                                                                  \
-    curl -sSL https://rvm.io/mpapis.asc | gpg --import - &&                                                       \
-    curl -sSL https://rvm.io/pkuczynski.asc | gpg --import - &&                                                   \
-    curl -sSL https://get.rvm.io | bash -s stable &&                                                              \
-    /bin/bash -l -c "rvm install 3.3.6" &&                                                                        \
-    /bin/bash -l -c "rvm use 3.3.6 --default"
+    rm protoc-28.0-linux-x86_64.zip
+#                                                                                                                  \
+#    curl -LO https://golang.org/dl/go$GO_VERSION.linux-amd64.tar.gz &&                                            \
+#    tar -C /usr/local -xzf go$GO_VERSION.linux-amd64.tar.gz &&                                                    \
+#    rm go$GO_VERSION.linux-amd64.tar.gz &&                                                                        \
+#    mkdir -p $GOPATH/src $GOPATH/bin &&                                                                           \
+#    go install google.golang.org/protobuf/cmd/protoc-gen-go@v1.36.0 &&                                            \
+#    go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@v1.5.1 &&                                            \
+#                                                                                                                  \
+#    curl -sSL https://rvm.io/mpapis.asc | gpg --import - &&                                                       \
+#    curl -sSL https://rvm.io/pkuczynski.asc | gpg --import - &&                                                   \
+#    curl -sSL https://get.rvm.io | bash -s stable &&                                                              \
+#    /bin/bash -l -c "rvm install 3.3.6" &&                                                                        \
+#    /bin/bash -l -c "rvm use 3.3.6 --default"
 
-RUN mkdir -p ~/.ssh &&                                                                                  \
-    ssh-keyscan github.com >> ~/.ssh/known_hosts &&                                                     \
-                                                                                                        \
-    systemctl disable systemd-binfmt.service &&                                                         \
-                                                                                                        \
-    echo "local   all             root                                    trust" >>                     \
-      /etc/postgresql/14/main/pg_hba.conf &&                                                            \
-    sed -i "s|^#*external_pid_file = .*|external_pid_file = '/run/postgresql/14-main.pid'|"             \
-      /etc/postgresql/14/main/postgresql.conf &&                                                        \
-    sed -i "s|^#*data_directory = .*|data_directory = '${WORKSPARE_DIR}/postgres-data'|"                \
-      /etc/postgresql/14/main/postgresql.conf &&                                                        \
-                                                                                                        \
-    sed -i "s|^dir .*|dir ${WORKSPARE_DIR}/redis-data|" /etc/redis/redis.conf &&                        \
-    sed -i "s|^pidfile .*|pidfile /run/redis/redis-server.pid|" /etc/redis/redis.conf &&                \
-                                                                                                        \
-    systemctl enable coder-agent.service &&                                                             \
-                                                                                                        \
-    sed -i "s|/workspaces|${WORKSPACE_DIR}|g" /etc/systemd/system/redis-server.service.d/override.conf
+#RUN mkdir -p ~/.ssh &&                                                                                  \
+#    ssh-keyscan github.com >> ~/.ssh/known_hosts &&                                                     \
+#                                                                                                        \
+#    systemctl disable systemd-binfmt.service &&                                                         \
+#                                                                                                        \
+#    echo "local   all             root                                    trust" >>                     \
+#      /etc/postgresql/14/main/pg_hba.conf &&                                                            \
+#    sed -i "s|^#*external_pid_file = .*|external_pid_file = '/run/postgresql/14-main.pid'|"             \
+#      /etc/postgresql/14/main/postgresql.conf &&                                                        \
+#    sed -i "s|^#*data_directory = .*|data_directory = '${WORKSPARE_DIR}/postgres-data'|"                \
+#      /etc/postgresql/14/main/postgresql.conf &&                                                        \
+#                                                                                                        \
+#    sed -i "s|^dir .*|dir ${WORKSPARE_DIR}/redis-data|" /etc/redis/redis.conf &&                        \
+#    sed -i "s|^pidfile .*|pidfile /run/redis/redis-server.pid|" /etc/redis/redis.conf &&                \
+#                                                                                                        \
+#    systemctl enable coder-agent.service &&                                                             \
+#                                                                                                        \
+#    sed -i "s|/workspaces|${WORKSPACE_DIR}|g" /etc/systemd/system/redis-server.service.d/override.conf

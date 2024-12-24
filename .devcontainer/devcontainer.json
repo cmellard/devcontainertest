@@ -1,6 +1,5 @@
 {
   "build": {
     "dockerfile": "Dockerfile"
-  },
-  "postCreateCommand": "/workspaces/devcontainertest/.devcontainer/post-create-setup.sh"
+  }
 }

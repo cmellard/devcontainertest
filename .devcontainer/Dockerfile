@@ -1,6 +1,8 @@
 FROM nestybox/ubuntu-jammy-systemd-docker
 ARG WORKSPACE_DIR=/workspaces
 
+USER root
+
 COPY coder-agent.service /etc/systemd/system/coder-agent.service
 COPY merge-env.sh /usr/local/bin/merge-env.sh
 COPY override.conf /etc/systemd/system/redis-server.service.d/override.conf

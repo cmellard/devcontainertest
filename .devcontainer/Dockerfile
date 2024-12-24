@@ -1,1 +1,1 @@
-FROM nestybox/ubuntu-jammy-systemd-docker
+FROM ubuntu

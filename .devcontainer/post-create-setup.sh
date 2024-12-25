@@ -57,6 +57,6 @@ END
 echo "Stopping PostgreSQL..."
 sudo -u postgres /usr/lib/postgresql/14/bin/pg_ctl -D "$DATA_DIR" stop
 
-/root/.rvm/rubies/ruby-3.3.6/bin/bundle config set --global path /workspaces/gems
+#/root/.rvm/rubies/ruby-3.3.6/bin/bundle config set --global path /workspaces/gems
 
 echo "Post-create setup completed successfully."

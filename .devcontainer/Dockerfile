@@ -30,7 +30,6 @@ RUN ln -fs /usr/share/zoneinfo/Pacific/Auckland /etc/localtime &&               
                                                                                                                   \
     apt-get update -y && apt-get install -y                                                                       \
     build-essential                                                                                               \
-    containerd.io=1.6.33-1                                                                                        \
     curl                                                                                                          \
     dnsutils                                                                                                      \
     git                                                                                                           \
@@ -76,7 +75,9 @@ RUN ln -fs /usr/share/zoneinfo/Pacific/Auckland /etc/localtime &&               
     /bin/bash -l -c "rvm install 3.3.6" &&                                                                        \
     /bin/bash -l -c "rvm use 3.3.6 --default"
 
-RUN mkdir -p ~/.ssh &&                                                                                  \
+# Downgrading containerd here because something in the list above is causing it to be upgraded
+RUN apt install -y containerd.io=1.6.33-1                                                               \
+    mkdir -p ~/.ssh &&                                                                                  \
     ssh-keyscan github.com >> ~/.ssh/known_hosts &&                                                     \
                                                                                                         \
     systemctl disable systemd-binfmt.service &&                                                         \

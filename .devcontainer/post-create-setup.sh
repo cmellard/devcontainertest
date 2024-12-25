@@ -22,6 +22,13 @@ if [ ! -d "$DATA_DIR" ]; then
     chmod 700 "$DATA_DIR"
 fi
 
+if [ ! -d "/var/run/postgresql" ]; then
+    echo "PostgreSQL runtime directory not found. Creating /var/run/postgresql"
+    mkdir -p /var/run/postgresql
+    chown postgres:postgres /var/run/postgresql
+    chmod 700 /var/run/postgresql
+fi
+
 # Initialize the database if needed
 if [ ! -f "$DATA_DIR/PG_VERSION" ]; then
     echo "Initializing PostgreSQL data directory at $DATA_DIR"

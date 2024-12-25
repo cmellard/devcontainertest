@@ -80,8 +80,6 @@ RUN apt install -y containerd.io=1.6.33-1 &&                                    
     systemctl enable redis-server &&                                                                      \
     systemctl enable coder-agent.service &&                                                               \
                                                                                                           \
-    mkdir -p /var/run/postgresql &&                                                                       \
-    chown postgres:postgres /var/run/postgresql &&                                                        \
     echo "local   all             root                                    trust" >>                       \
       /etc/postgresql/14/main/pg_hba.conf &&                                                              \
     sed -i "s|^#*external_pid_file = .*|external_pid_file = '/run/postgresql/14-main.pid'|"               \

@@ -96,4 +96,4 @@ RUN apt install -y containerd.io=1.6.33-1 &&                                    
     mkdir -p /etc/coder &&                                                                                \
     touch /etc/coder/coder-agent.conf &&                                                                  \
                                                                                                           \
-    /root/.rvm/rubies/ruby-3.3.6/bin/bundle config set --global path /workspaces/gems
+

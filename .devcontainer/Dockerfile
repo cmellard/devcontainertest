@@ -94,6 +94,4 @@ RUN apt install -y containerd.io=1.6.33-1 &&                                    
     sed -i "s|/workspaces|${WORKSPACE_DIR}|g" /etc/systemd/system/redis-server.service.d/override.conf && \
                                                                                                           \
     mkdir -p /etc/coder &&                                                                                \
-    touch /etc/coder/coder-agent.conf &&                                                                  \
-                                                                                                          \
-
+    touch /etc/coder/coder-agent.conf

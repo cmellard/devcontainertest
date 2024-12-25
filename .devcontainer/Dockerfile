@@ -63,6 +63,8 @@ RUN ln -fs /usr/share/zoneinfo/Pacific/Auckland /etc/localtime &&               
                                                                                                                   \
     curl -sSL https://rvm.io/mpapis.asc | gpg --import - &&                                                       \
     curl -sSL https://rvm.io/pkuczynski.asc | gpg --import - &&                                                   \
+    echo 'export rvm_prefix="$HOME"' > /root/.rvmrc &&                                                            \
+    echo 'export rvm_path="$HOME/.rvm"' >> /root/.rvmrc &&                                                        \
     curl -sSL https://get.rvm.io | bash -s stable &&                                                              \
     /bin/bash -l -c "rvm install 3.3.6" &&                                                                        \
     /bin/bash -l -c "rvm use 3.3.6 --default"

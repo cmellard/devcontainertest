@@ -57,8 +57,4 @@ END
 echo "Stopping PostgreSQL..."
 sudo -u postgres /usr/lib/postgresql/14/bin/pg_ctl -D "$DATA_DIR" stop
 
-
-bundle config set --global path /workspaces/gems
-
 echo "Post-create setup completed successfully."
-

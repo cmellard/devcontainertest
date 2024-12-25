@@ -18,7 +18,7 @@ ENV RAILS_ENV=test
 ENV PROTOC_DISABLE_DOCKER=true
 ENV DATABASE_NAME=order
 ENV DATABASE_USER=root
-ENV DATBASE_HOST=/var/run/postgresql
+ENV DATABASE_HOST=/var/run/postgresql
 ENV APOLLO_ELV2_LICENSE=accept
 
 # Software packages - i.e. big layer
@@ -29,6 +29,7 @@ RUN ln -fs /usr/share/zoneinfo/Pacific/Auckland /etc/localtime &&               
                                                                                                                   \
     apt-get update -y && apt-get install -y                                                                       \
     build-essential                                                                                               \
+    containerd.io=1.6.33-1                                                                                        \
     curl                                                                                                          \
     dnsutils                                                                                                      \
     git                                                                                                           \

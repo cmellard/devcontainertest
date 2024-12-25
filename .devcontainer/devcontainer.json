@@ -2,5 +2,17 @@
   "build": {
     "dockerfile": "Dockerfile"
   },
-  "postCreateCommand": "/workspaces/devcontainertest/.devcontainer/post-create-setup.sh"
+  "postCreateCommand": "/workspaces/devcontainertest/.devcontainer/post-create-setup.sh",
+  "containerEnv": {
+    "DOCKER_HOST": "unix:///run/docker.sock"
+  },
+  "remoteEnv": {
+    "DATABASE_HOST": "/var/run/postgresql",
+    "DATABASE_USER": "root",
+    "DATABASE_NAME": "order",
+    "RAILS_ENV": "test",
+    "DYNO": "potato",
+    "PROTOC_DISABLE_DOCKER": "true",
+    "GOPRIVATE": "github.com/Shuttlerock"
+  }
 }

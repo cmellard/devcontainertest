@@ -11,16 +11,8 @@ ENV GO_VERSION=1.23.2
 ENV GOPATH=/go
 ENV PATH=/usr/local/go/bin:$GOPATH/bin:/usr/local/rvm/rubies/ruby-3.3.6/bin:$PATH
 ENV DEBIAN_FRONTEND=noninteractive
-ENV PGDATABASE=postgres
-ENV GOPRIVATE=github.com/Shuttlerock
-ENV DYNO=potato
-ENV RAILS_ENV=test
-ENV PROTOC_DISABLE_DOCKER=true
-ENV DATABASE_NAME=order
-ENV DATABASE_USER=root
-ENV DATABASE_HOST=/var/run/postgresql
 ENV APOLLO_ELV2_LICENSE=accept
-ENV DOCKER_HOST=unix:///run/docker.sock
+ENV PGDATABASE=postgres
 
 # Software packages - i.e. big layer
 RUN ln -fs /usr/share/zoneinfo/Pacific/Auckland /etc/localtime &&                                                 \

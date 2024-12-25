@@ -20,6 +20,7 @@ ENV DATABASE_NAME=order
 ENV DATABASE_USER=root
 ENV DATABASE_HOST=/var/run/postgresql
 ENV APOLLO_ELV2_LICENSE=accept
+ENV DOCKER_HOST=unix:///run/docker.sock
 
 # Software packages - i.e. big layer
 RUN ln -fs /usr/share/zoneinfo/Pacific/Auckland /etc/localtime &&                                                 \

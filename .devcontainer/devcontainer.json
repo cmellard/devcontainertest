@@ -4,7 +4,9 @@
   },
   "postCreateCommand": "/workspaces/devcontainertest/.devcontainer/post-create-setup.sh",
   "containerEnv": {
-    "DOCKER_HOST": "unix:///run/docker.sock"
+    "DOCKER_HOST": "unix:///run/docker.sock",
+    "PGDATABASE": "postgres",
+    "GOPATH": "/go",
   },
   "remoteEnv": {
     "DATABASE_HOST": "/var/run/postgresql",

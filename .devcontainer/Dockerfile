@@ -76,7 +76,7 @@ RUN ln -fs /usr/share/zoneinfo/Pacific/Auckland /etc/localtime &&               
     /bin/bash -l -c "rvm use 3.3.6 --default"
 
 # Downgrading containerd here because something in the list above is causing it to be upgraded
-RUN apt install -y containerd.io=1.6.33-1                                                               \
+RUN apt install -y containerd.io=1.6.33-1 &&                                                            \
     mkdir -p ~/.ssh &&                                                                                  \
     ssh-keyscan github.com >> ~/.ssh/known_hosts &&                                                     \
                                                                                                         \

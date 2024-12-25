@@ -67,8 +67,8 @@ RUN ln -fs /usr/share/zoneinfo/Pacific/Auckland /etc/localtime &&               
     echo 'export rvm_path="$HOME/.rvm"' >> /root/.rvmrc &&                                                        \
     curl -sSL https://get.rvm.io | bash -s stable &&                                                              \
     /bin/bash -l -c "rvm install 3.3.6" &&                                                                        \
-    /bin/bash -l -c "rvm use 3.3.6 --default" &&                                                                  \
-    bundle config set --global path ${WORKSPACE_DIR}/gems
+    /bin/bash -l -c "rvm use 3.3.6 --default"
+
 
 # Downgrading containerd here because something in the list above is causing it to be upgraded
 RUN apt install -y containerd.io=1.6.33-1 &&                                                              \
@@ -94,4 +94,4 @@ RUN apt install -y containerd.io=1.6.33-1 &&                                    
     sed -i "s|/workspaces|${WORKSPACE_DIR}|g" /etc/systemd/system/redis-server.service.d/override.conf && \
                                                                                                           \
     mkdir -p /etc/coder &&                                                                                \
-    touch /etc/coder/coder-agent.conf
+    touch /etc/coder/coder-agent.conf && bundle config set --global path ${WORKSPACE_DIR}/gems

@@ -67,7 +67,8 @@ RUN ln -fs /usr/share/zoneinfo/Pacific/Auckland /etc/localtime &&               
     echo 'export rvm_path="$HOME/.rvm"' >> /root/.rvmrc &&                                                        \
     curl -sSL https://get.rvm.io | bash -s stable &&                                                              \
     /bin/bash -l -c "rvm install 3.3.6" &&                                                                        \
-    /bin/bash -l -c "rvm use 3.3.6 --default"
+    /bin/bash -l -c "rvm use 3.3.6 --default" &&                                                                  \
+    bundle config set --global path ${WORKSPACE_DIR}/gems
 
 # Downgrading containerd here because something in the list above is causing it to be upgraded
 RUN apt install -y containerd.io=1.6.33-1 &&                                                              \

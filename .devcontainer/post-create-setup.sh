@@ -35,7 +35,7 @@ POSTGRES_PID=$!
 
 # Wait for PostgreSQL to become ready
 echo "Waiting for PostgreSQL to become ready..."
-RETRIES=30
+RETRIES=600
 for i in $(seq 1 $RETRIES); do
     if sudo -u postgres psql -c '\q' > /dev/null 2>&1; then
         echo "PostgreSQL is ready."

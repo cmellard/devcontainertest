@@ -2,25 +2,5 @@
   "build": {
     "dockerfile": "Dockerfile"
   },
-  "postCreateCommand": "/workspaces/devcontainertest/.devcontainer/post-create-setup.sh",
-  "containerEnv": {
-    "DOCKER_HOST": "unix:///run/docker.sock",
-    "PGDATABASE": "postgres",
-    "GOPATH": "/workspaces/go:/go",
-    "GOCACHE": "/workspaces/go/build",
-    "GOMODCACHE": "/workspaces/go/modcache",
-    "GOPROXY": "http://athens.athens.svc.cluster.local",
-    "YARN_GLOBAL_FOLDER": "/workspaces/.yarn",
-    "YARN_NPM_REGISTRY_SERVER": "http://verdaccio.verdaccio.svc.cluster.local",
-    "YARN_UNSAFE_HTTP_WHITELIST": "verdaccio.verdaccio.svc.cluster.local"
-  },
-  "remoteEnv": {
-    "DATABASE_HOST": "/var/run/postgresql",
-    "DATABASE_USER": "root",
-    "DATABASE_NAME": "order",
-    "RAILS_ENV": "test",
-    "DYNO": "potato",
-    "PROTOC_DISABLE_DOCKER": "true",
-    "GOPRIVATE": "github.com/Shuttlerock"
-  }
+  "postCreateCommand": "/workspaces/devcontainertest/.devcontainer/post-create-setup.sh"
 }

@@ -12,7 +12,6 @@ ENV GOPATH=/go
 ENV PATH=/usr/local/go/bin:$GOPATH/bin:/usr/local/rvm/rubies/ruby-3.3.6/bin:$PATH
 ENV DEBIAN_FRONTEND=noninteractive
 ENV APOLLO_ELV2_LICENSE=accept
-ENV PGDATABASE=postgres
 
 # Software packages - i.e. big layer
 RUN ln -fs /usr/share/zoneinfo/Pacific/Auckland /etc/localtime &&                                                 \

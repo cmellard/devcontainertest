@@ -9,7 +9,6 @@ COPY override.conf /etc/systemd/system/redis-server.service.d/override.conf
 
 ENV GO_VERSION=1.23.2
 ENV GOPATH=/go
-ENV PATH=/usr/local/go/bin:$GOPATH/bin:/usr/local/rvm/rubies/ruby-3.3.6/bin:$PATH
 ENV DEBIAN_FRONTEND=noninteractive
 ENV APOLLO_ELV2_LICENSE=accept
 ENV PGDATABASE=postgres
@@ -91,6 +90,6 @@ RUN apt install -y containerd.io=1.6.33-1 &&                                    
     sed -i "s|^pidfile .*|pidfile /run/redis/redis-server.pid|" /etc/redis/redis.conf &&                  \
     sed -i "s|/workspaces|${WORKSPACE_DIR}|g" /etc/systemd/system/redis-server.service.d/override.conf && \
                                                                                                           \
+    echo 'export PATH="$PATH:/go:/usr/local/go/bin"' >> /root/.bashrc &&                                  \
     mkdir -p /etc/coder &&                                                                                \
-    echo 'PATH=$PATH:/usr/local/go/bin:/go' >> /etc/coder/coder-agent.env &&                              \
     touch /etc/coder/coder-agent.conf

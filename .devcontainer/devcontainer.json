@@ -15,7 +15,6 @@
     "RAILS_ENV": "test",
     "DYNO": "potato",
     "PROTOC_DISABLE_DOCKER": "true",
-    "GOPRIVATE": "github.com/Shuttlerock",
-    "PATH": "${remoteEnv:PATH}:/usr/local/go/bin:/go/bin"
+    "GOPRIVATE": "github.com/Shuttlerock"
   }
 }

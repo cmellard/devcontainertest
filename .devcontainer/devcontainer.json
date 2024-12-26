@@ -6,7 +6,13 @@
   "containerEnv": {
     "DOCKER_HOST": "unix:///run/docker.sock",
     "PGDATABASE": "postgres",
-    "GOPATH": "/go"
+    "GOPATH": "/workspaces/go:/go",
+    "GOCACHE": "/workspaces/go/build",
+    "GOMODCACHE": "/workspaces/go/modcache",
+    "GOPROXY": "http://athens.athens.svc.cluster.local",
+    "YARN_GLOBAL_FOLDER": "/workspaces/.yarn",
+    "YARN_NPM_REGISTRY_SERVER": "http://verdaccio.verdaccio.svc.cluster.local",
+    "YARN_UNSAFE_HTTP_WHITELIST": "verdaccio.verdaccio.svc.cluster.local"
   },
   "remoteEnv": {
     "DATABASE_HOST": "/var/run/postgresql",

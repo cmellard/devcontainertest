@@ -71,26 +71,28 @@ RUN ln -fs /usr/share/zoneinfo/Pacific/Auckland /etc/localtime &&               
 
 
 # Downgrading containerd here because something in the list above is causing it to be upgraded
-RUN apt install -y containerd.io=1.6.33-1 &&                                                              \
-    mkdir -p ~/.ssh &&                                                                                    \
-    ssh-keyscan github.com >> ~/.ssh/known_hosts &&                                                       \
-                                                                                                          \
-    systemctl mask systemd-binfmt.service &&                                                              \
-    systemctl enable postgresql@14-main &&                                                                \
-    systemctl enable redis-server &&                                                                      \
-    systemctl enable coder-agent.service &&                                                               \
-                                                                                                          \
-    echo "local   all             root                                    trust" >>                       \
-      /etc/postgresql/14/main/pg_hba.conf &&                                                              \
-    sed -i "s|^#*external_pid_file = .*|external_pid_file = '/run/postgresql/14-main.pid'|"               \
-      /etc/postgresql/14/main/postgresql.conf &&                                                          \
-    sed -i "s|^#*data_directory = .*|data_directory = '${WORKSPACE_DIR}/postgres-data'|"                  \
-      /etc/postgresql/14/main/postgresql.conf &&                                                          \
-                                                                                                          \
-    sed -i "s|^dir .*|dir ${WORKSPACE_DIR}/redis-data|" /etc/redis/redis.conf &&                          \
-    sed -i "s|^pidfile .*|pidfile /run/redis/redis-server.pid|" /etc/redis/redis.conf &&                  \
-    sed -i "s|/workspaces|${WORKSPACE_DIR}|g" /etc/systemd/system/redis-server.service.d/override.conf && \
-                                                                                                          \
-    echo 'export PATH="$PATH:/go:/usr/local/go/bin"' >> /root/.bashrc &&                                  \
-    mkdir -p /etc/coder &&                                                                                \
+RUN apt install -y containerd.io=1.6.33-1 &&                                                                  \
+    mkdir -p ~/.ssh &&                                                                                        \
+    ssh-keyscan github.com >> ~/.ssh/known_hosts &&                                                           \
+                                                                                                              \
+    systemctl mask systemd-binfmt.service &&                                                                  \
+    systemctl enable postgresql@14-main &&                                                                    \
+    systemctl enable redis-server &&                                                                          \
+    systemctl enable coder-agent.service &&                                                                   \
+                                                                                                              \
+    echo "local   all             root                                    trust" >>                           \
+      /etc/postgresql/14/main/pg_hba.conf &&                                                                  \
+    sed -i "s|^#*external_pid_file = .*|external_pid_file = '/run/postgresql/14-main.pid'|"                   \
+      /etc/postgresql/14/main/postgresql.conf &&                                                              \
+    sed -i "s|^#*data_directory = .*|data_directory = '${WORKSPACE_DIR}/postgres-data'|"                      \
+      /etc/postgresql/14/main/postgresql.conf &&                                                              \
+                                                                                                              \
+    sed -i "s|^dir .*|dir ${WORKSPACE_DIR}/redis-data|" /etc/redis/redis.conf &&                              \
+    sed -i "s|^pidfile .*|pidfile /run/redis/redis-server.pid|" /etc/redis/redis.conf &&                      \
+    sed -i "s|/workspaces|${WORKSPACE_DIR}|g" /etc/systemd/system/redis-server.service.d/override.conf &&     \
+                                                                                                              \
+    mkdir -p /root/.bundle && echo -e "---\nBUNDLE_PATH: \"${WORKSPACE_DIR}/gems\"" > /root/.bundle/config && \
+                                                                                                              \
+    echo 'export PATH="$PATH:/go:/usr/local/go/bin"' >> /root/.bashrc &&                                      \
+    mkdir -p /etc/coder &&                                                                                    \
     touch /etc/coder/coder-agent.conf

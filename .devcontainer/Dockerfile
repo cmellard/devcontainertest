@@ -9,6 +9,7 @@ COPY override.conf /etc/systemd/system/redis-server.service.d/override.conf
 
 ENV GO_VERSION=1.23.2
 ENV GOPATH=/go
+ENV PATH=/usr/local/go/bin:$GOPATH/bin:/usr/local/rvm/rubies/ruby-3.3.6/bin:$PATH
 ENV DEBIAN_FRONTEND=noninteractive
 ENV APOLLO_ELV2_LICENSE=accept
 ENV PGDATABASE=postgres

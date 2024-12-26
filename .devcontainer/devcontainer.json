@@ -6,8 +6,7 @@
   "containerEnv": {
     "DOCKER_HOST": "unix:///run/docker.sock",
     "PGDATABASE": "postgres",
-    "GOPATH": "/go",
-    "PATH": "${containerEnv:PATH}:/usr/local/go/bin:/go/bin"
+    "GOPATH": "/go"
   },
   "remoteEnv": {
     "DATABASE_HOST": "/var/run/postgresql",
